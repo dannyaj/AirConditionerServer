@@ -1,0 +1,35 @@
+<project name="buildTestAir" default="main" basedir="../">
+
+	<property name="dist.dir" value="dist\TestAir" />
+
+	<target name="clean">
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="run">
+
+
+
+		<copy todir="${dist.dir}" file="TestWeb.bat">
+		</copy>
+
+
+		<copy todir="${dist.dir}\conf">
+			<fileset dir="conf">
+				<filename name="emsgw.properties" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="main" depends="clean,run">
+
+		<fatjar.build output="TestAir\TestAir.jar">
+			<fatjar.manifest mainclass="org.iii.nmi.air.test.web.EmsMainAPP" />
+			<fatjar.filesource path="${basedir}\bin" relpath="" />
+
+		</fatjar.build>
+
+	</target>
+
+</project>

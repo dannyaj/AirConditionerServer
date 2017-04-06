@@ -1,0 +1,57 @@
+<project name="AirConditioner" default="main" basedir="../">
+
+	<property name="dist.dir" value="dist\AirConditioner" />
+
+	<target name="clean">
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<target name="run">
+
+
+
+		<copy todir="${dist.dir}" file="AirConditioner.bat">
+		</copy>
+
+
+		<copy todir="${dist.dir}\conf">
+			<fileset dir="conf">
+				<filename name="dbms.properties" />
+			</fileset>
+		</copy>
+
+		<copy todir="${dist.dir}\conf">
+			<fileset dir="conf">
+				<filename name="socket.properties" />
+			</fileset>
+		</copy>
+
+
+		<copy todir="${dist.dir}\conf">
+			<fileset dir="conf">
+				<filename name="sys.properties" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${dist.dir}\conf">
+					<fileset dir="conf">
+						<filename name="air.properties" />
+					</fileset>
+				</copy>
+
+	</target>
+
+	<target name="main" depends="clean,run">
+
+		<fatjar.build output="AirConditioner\AirConditioner.jar">
+			<fatjar.manifest mainclass="org.iii.nmi.air.main.AirConditionerMain" />
+			<fatjar.filesource path="${basedir}\bin" relpath="" />
+			<fatjar.jarsource file="${basedir}\lib\log4j-1.2.13.jar" relpath="" />
+			<fatjar.jarsource file="${basedir}\lib\classes12.jar" relpath="" />
+			<fatjar.jarsource file="${basedir}\lib\commons-pool-1.4.jar" relpath="" />
+			<fatjar.jarsource file="${basedir}\lib\commons-dbcp-1.2.2.jar" relpath="" />
+		</fatjar.build>
+
+	</target>
+
+</project>
